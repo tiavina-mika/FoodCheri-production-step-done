@@ -8,6 +8,7 @@ import {
   DialogTitle,
   FormControl,
   FormHelperText,
+  InputAdornment,
   TextField,
   styled
 } from "@mui/material";
@@ -84,9 +85,14 @@ const PSEToDoneDialogForm = ({ open, onClose }) => {
                     error={!!errors.netWeight}
                     fullWidth
                     type="number"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">kg</InputAdornment>
+                      )
+                    }}
                   />
                   {errors.netWeight && (
-                    <FormHelperText>{errors.netWeight}</FormHelperText>
+                    <FormHelperText>{(errors as any).netWeight}</FormHelperText>
                   )}
                 </FormControl>
               </Form>
@@ -100,7 +106,7 @@ const PSEToDoneDialogForm = ({ open, onClose }) => {
         </Button>
 
         <Button onClick={handleConfirm} color="primary" variant="contained">
-          Enregistrer
+          Terminer l'étape
         </Button>
       </DialogActions>
     </StyledDialog>
