@@ -26,7 +26,7 @@ const App = () => {
 
   const togglePSEToDoneModal = () => setOpenPSEToDoneModal(!openPSEToDoneModal);
 
-  const handleConfirm = (values: IPSEFormValues) => {
+  const handleConfirmPSEToDone = (values: IPSEFormValues) => {
     const newValues = {
       ...productionStepExecution,
       ...values,
@@ -83,7 +83,7 @@ const App = () => {
         <PSEToDoneDialogForm
           open={openPSEToDoneModal}
           onClose={togglePSEToDoneModal}
-          onConfirm={handleConfirm}
+          onConfirm={handleConfirmPSEToDone}
         />
       </div>
       <Footer />
