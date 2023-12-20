@@ -4,4 +4,5 @@ export interface IPSEFormValues {
 
 export interface IPSEToDoneValues extends IPSEFormValues {
   endTime: number;
+  status: "TODO" | "DONE";
 }

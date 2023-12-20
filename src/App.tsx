@@ -4,12 +4,23 @@ import { Box, Button } from "@mui/material";
 import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
 
-import { IPSEFormValues } from "./types/productionStepExecution";
+import {
+  IPSEFormValues,
+  IPSEToDoneValues
+} from "./types/productionStepExecution";
 import PSEHeader from "./containers/PSEHeader";
 import PSEToDoneDialogForm from "./containers/PSEToDoneDialogForm";
 
+const data = {
+  name: "Emincer le poirreaux",
+  status: "TODO"
+};
 const App = () => {
   const [openPSEModal, setOpenPSEModal] = useState<boolean>(false);
+  const [
+    productionStepExecution,
+    setProductionStepExecution
+  ] = useState<IPSEToDoneValues | null>(null);
 
   const togglePSEModal = () => setOpenPSEModal(!openPSEModal);
 
@@ -19,6 +30,8 @@ const App = () => {
       endTime: dayjs.utc().valueOf(),
       status: "DONE"
     };
+
+    setFormValues(newValues);
     console.log("values", newValues);
   };
 
