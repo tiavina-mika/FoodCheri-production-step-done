@@ -1,15 +1,35 @@
 import React, { useRef } from "react";
 import { Formik, Form } from "formik";
 import {
+  Button,
   Dialog,
+  DialogActions,
   DialogContent,
   DialogTitle,
   FormControl,
   FormHelperText,
-  TextField
+  TextField,
+  styled
 } from "@mui/material";
 
 import { PSEToDoneSchema } from "../utils/validations/productionStepExecutionSchema";
+
+const sx = {
+  title: {
+    color: "#7C7C7C",
+    fontSize: 16,
+    fontStyle: "normal",
+    fontWeight: 400,
+    lineHeight: 1.37
+  }
+};
+
+const StyledDialog = styled(Dialog)({
+  "& .MuiPaper-root": {
+    width: 357,
+    padding: 10
+  }
+});
 
 // const StyledFormRow = styled("div")({
 //   borderRadius: 6,
@@ -31,9 +51,13 @@ const PSEToDoneDialogForm = ({ open, onClose }) => {
   };
 
   return (
-    <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
-      <DialogTitle id="form-dialog-title" sx={{ pb: 0 }}>
-        Ajouter un mode de transformation
+    <StyledDialog
+      open={open}
+      onClose={onClose}
+      aria-labelledby="form-dialog-title"
+    >
+      <DialogTitle id="form-dialog-title" sx={sx.title}>
+        Saisissez le poids réel en sortie pour terminer l'étape de production.
       </DialogTitle>
       <DialogContent sx={{ mt: 1 }}>
         <Formik
@@ -51,7 +75,7 @@ const PSEToDoneDialogForm = ({ open, onClose }) => {
                   error={!!errors.netWeight}
                 >
                   <TextField
-                    label="Mode de transformation"
+                    label="Poids réel en sortie"
                     variant="standard"
                     name="name"
                     onChange={handleChange}
@@ -70,7 +94,16 @@ const PSEToDoneDialogForm = ({ open, onClose }) => {
           }}
         </Formik>
       </DialogContent>
-    </Dialog>
+      <DialogActions sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Button onClick={handleCancel} color="primary">
+          Annuler
+        </Button>
+
+        <Button onClick={handleConfirm} color="primary" variant="contained">
+          Enregistrer
+        </Button>
+      </DialogActions>
+    </StyledDialog>
   );
 };
 
