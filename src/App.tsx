@@ -13,7 +13,7 @@ const App = () => {
       <Box sx={{ mt: 6 }}>
         <Button variant="contained">Terminer l'étape</Button>
       </Box>
-      <PSEToDoneDialogForm />
+      <PSEToDoneDialogForm open />
     </div>
   );
 };

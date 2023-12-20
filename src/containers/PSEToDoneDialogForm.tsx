@@ -1,6 +1,13 @@
 import React, { useRef } from "react";
 import { Formik, Form } from "formik";
-import { Button, Stack, TextField, Typography } from "@mui/material";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  FormControl,
+  FormHelperText,
+  TextField
+} from "@mui/material";
 
 import { PSEToDoneSchema } from "../utils/validations/productionStepExecutionSchema";
 
@@ -10,7 +17,7 @@ import { PSEToDoneSchema } from "../utils/validations/productionStepExecutionSch
 //   background: "#FFF"
 // });
 
-const PSEToDoneDialogForm = () => {
+const PSEToDoneDialogForm = ({ open, onClose }) => {
   const formikRef = useRef();
 
   const handleConfirm = () => {
@@ -24,26 +31,46 @@ const PSEToDoneDialogForm = () => {
   };
 
   return (
-    <Stack className="flexColumn stretchSelf flex1" spacing={2}>
-      {/* <div className="flexRow spaceBetween stretchSelf">
-        <Typography>Mik.</Typography>
-        <Stack direction="row" spacing={2}>
-          <Button onClick={handleCancel}>Annuler</Button>
-          <Button variant="contained" onClick={handleConfirm}>
-            Enregister
-          </Button>
-        </Stack>
-      </div> */}
-      <Formik
-        onSubmit={handleSubmit}
-        innerRef={formikRef}
-        validationSchema={PSEToDoneSchema}
-      >
-        {({ values }) => {
-          return <Form className="flexColumn stretchSelf flex1"></Form>;
-        }}
-      </Formik>
-    </Stack>
+    <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
+      <DialogTitle id="form-dialog-title" sx={{ pb: 0 }}>
+        Ajouter un mode de transformation
+      </DialogTitle>
+      <DialogContent sx={{ mt: 1 }}>
+        <Formik
+          onSubmit={handleSubmit}
+          innerRef={formikRef}
+          validationSchema={PSEToDoneSchema}
+        >
+          {({ values, handleChange, handleBlur, errors }) => {
+            return (
+              <Form>
+                <FormControl
+                  variant="standard"
+                  fullWidth
+                  sx={{ mt: 2.5 }}
+                  error={!!errors.netWeight}
+                >
+                  <TextField
+                    label="Mode de transformation"
+                    variant="standard"
+                    name="name"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values?.netWeight}
+                    error={!!errors.netWeight}
+                    fullWidth
+                    type="number"
+                  />
+                  {errors.netWeight && (
+                    <FormHelperText>{errors.netWeight}</FormHelperText>
+                  )}
+                </FormControl>
+              </Form>
+            );
+          }}
+        </Formik>
+      </DialogContent>
+    </Dialog>
   );
 };
 
