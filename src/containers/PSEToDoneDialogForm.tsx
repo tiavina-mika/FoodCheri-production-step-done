@@ -34,12 +34,6 @@ const StyledDialog = styled(Dialog)({
   }
 });
 
-// const StyledFormRow = styled("div")({
-//   borderRadius: 6,
-//   border: "1px solid " + PRODUCTION_SCHEMA_BORDER_COLOR,
-//   background: "#FFF"
-// });
-
 type Props = {
   open: boolean;
   onClose: () => void;
@@ -108,7 +102,6 @@ const PSEToDoneDialogForm = ({ open, onClose, onConfirm }: Props) => {
         <Button onClick={handleCancel} color="primary">
           Annuler
         </Button>
-
         <Button onClick={handleConfirm} color="primary" variant="contained">
           Terminer l'étape
         </Button>
