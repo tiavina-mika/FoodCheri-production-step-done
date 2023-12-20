@@ -9,11 +9,13 @@ import {
   FormControl,
   FormHelperText,
   InputAdornment,
+  Stack,
   TextField,
   styled
 } from "@mui/material";
 
 import { PSEToDoneSchema } from "../utils/validations/productionStepExecutionSchema";
+import { IPSEFormValues } from "../types/productionStepExecution";
 
 const sx = {
   title: {
@@ -38,17 +40,23 @@ const StyledDialog = styled(Dialog)({
 //   background: "#FFF"
 // });
 
-const PSEToDoneDialogForm = ({ open, onClose }) => {
+type Props = {
+  open: boolean;
+  onClose: () => void;
+  onConfirm: (values: IPSEFormValues) => void;
+};
+const PSEToDoneDialogForm = ({ open, onClose, onConfirm }: Props) => {
   const formikRef = useRef();
 
   const handleConfirm = () => {
     (formikRef.current as any)?.submitForm();
   };
 
-  const handleCancel = () => console.log("cancel");
+  const handleCancel = () => onClose();
 
-  const handleSubmit = (values: any) => {
-    console.log("values", values);
+  const handleSubmit = (values: IPSEFormValues) => {
+    onConfirm(values);
+    onClose();
   };
 
   return (
@@ -62,6 +70,7 @@ const PSEToDoneDialogForm = ({ open, onClose }) => {
       </DialogTitle>
       <DialogContent sx={{ mt: 1 }}>
         <Formik
+          initialValues={{ netWeight: null }}
           onSubmit={handleSubmit}
           innerRef={formikRef}
           validationSchema={PSEToDoneSchema}
@@ -69,16 +78,11 @@ const PSEToDoneDialogForm = ({ open, onClose }) => {
           {({ values, handleChange, handleBlur, errors }) => {
             return (
               <Form>
-                <FormControl
-                  variant="standard"
-                  fullWidth
-                  sx={{ mt: 2.5 }}
-                  error={!!errors.netWeight}
-                >
+                <Stack>
                   <TextField
                     label="Poids réel en sortie"
                     variant="standard"
-                    name="name"
+                    name="netWeight"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values?.netWeight}
@@ -94,7 +98,7 @@ const PSEToDoneDialogForm = ({ open, onClose }) => {
                   {errors.netWeight && (
                     <FormHelperText>{(errors as any).netWeight}</FormHelperText>
                   )}
-                </FormControl>
+                </Stack>
               </Form>
             );
           }}
