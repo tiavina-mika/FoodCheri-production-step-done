@@ -14,7 +14,12 @@ const App = () => {
   const togglePSEModal = () => setOpenPSEModal(!openPSEModal);
 
   const handleConfirm = (values: IPSEFormValues) => {
-    console.log("values", values);
+    const newValues = {
+      ...values,
+      endTime: dayjs.utc().valueOf(),
+      status: "DONE"
+    };
+    console.log("values", newValues);
   };
 
   return (
