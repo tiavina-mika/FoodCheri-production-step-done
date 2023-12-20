@@ -1,6 +1,6 @@
 import { useState } from "react";
 import dayjs from "dayjs";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
 
@@ -50,6 +50,17 @@ const App = () => {
           {isTodo ? "Terminer l'étape" : "Etape terminée"}
         </Button>
       </Box>
+
+      {!isTodo && (
+        <Box className="flexCenter stretchSelf" sx={{ mt: 2 }}>
+          <Typography>
+            Etape terminée à{" "}
+            <em>
+              {dayjs.utc(productionStepExecution.endTime).format("HH[h]mm:ss")}
+            </em>
+          </Typography>
+        </Box>
+      )}
 
       {/* form dialog */}
       <PSEToDoneDialogForm
