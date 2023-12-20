@@ -37,6 +37,8 @@ const App = () => {
     console.log("values", newValues);
   };
 
+  const isTodo = productionStepExecution.status === "TODO";
+
   return (
     <div className="flexColumn minHeight100">
       {/* header */}
@@ -44,8 +46,8 @@ const App = () => {
 
       {/* content */}
       <Box sx={{ mt: 6 }} className="flexCenter stretchSelf">
-        <Button onClick={togglePSEModal} variant="contained">
-          Terminer l'étape
+        <Button onClick={togglePSEModal} variant="contained" disabled={!isTodo}>
+          {isTodo ? "Terminer l'étape" : "Etape terminée"}
         </Button>
       </Box>
 
