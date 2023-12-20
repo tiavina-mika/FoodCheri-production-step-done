@@ -24,13 +24,17 @@ const App = () => {
 
   return (
     <div className="flexColumn minHeight100">
+      {/* header */}
       <PSEHeader />
+
+      {/* content */}
       <Box sx={{ mt: 6 }} className="flexCenter stretchSelf">
         <Button onClick={togglePSEModal} variant="contained">
           Terminer l'étape
         </Button>
       </Box>
 
+      {/* form dialog */}
       <PSEToDoneDialogForm
         open={openPSEModal}
         onClose={togglePSEModal}
