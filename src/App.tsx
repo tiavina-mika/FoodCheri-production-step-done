@@ -19,12 +19,12 @@ const data: IProductionStepExecution = {
 };
 
 const App = () => {
-  const [openPSEModal, setOpenPSEModal] = useState<boolean>(false);
+  const [openPSEToDoneModal, setOpenPSEToDoneModal] = useState<boolean>(false);
   const [productionStepExecution, setProductionStepExecution] = useState<
     IProductionStepExecution
   >(data);
 
-  const togglePSEModal = () => setOpenPSEModal(!openPSEModal);
+  const togglePSEToDoneModal = () => setOpenPSEToDoneModal(!openPSEToDoneModal);
 
   const handleConfirm = (values: IPSEFormValues) => {
     const newValues = {
@@ -54,7 +54,7 @@ const App = () => {
         {/* content */}
         <Box sx={{ mt: 6 }} className="flexCenter stretchSelf">
           <Button
-            onClick={togglePSEModal}
+            onClick={togglePSEToDoneModal}
             variant="contained"
             disabled={!isTodo}
           >
@@ -81,8 +81,8 @@ const App = () => {
 
         {/* form dialog */}
         <PSEToDoneDialogForm
-          open={openPSEModal}
-          onClose={togglePSEModal}
+          open={openPSEToDoneModal}
+          onClose={togglePSEToDoneModal}
           onConfirm={handleConfirm}
         />
       </div>
