@@ -1,13 +1,17 @@
 import RepeatIcon from "@mui/icons-material/Repeat";
-import { Icon, Stack, Typography } from "@mui/material";
+import { Box, Icon, Paper, Stack, Typography } from "@mui/material";
 import dayjs from "dayjs";
 
 const PSEHeader = () => {
   return (
-    <div className="stretchSelf">
-      <Stack spacing={5} direction="row" alignItems="center">
+    <Paper className="stretchSelf" sx={{ px: 2, py: 1.2, bgcolor: "#000" }}>
+      {/* <Box className="stretchSelf" sx={{ borderBottom: '1px solid #000'}}> */}
+      <Stack spacing={4} direction="row" alignItems="center">
+        <div>
+          <img alt="fc" src="/img/FC.svg" />
+        </div>
         <Stack
-          sx={{ color: "#7900D9" }}
+          sx={{ color: "#fff" }}
           spacing={1}
           direction="row"
           alignItems="center"
@@ -15,18 +19,17 @@ const PSEHeader = () => {
           <Icon>
             <RepeatIcon />
           </Icon>
-          <Typography variant="h6" sx={{ fontWeight: 500 }}>
+          <Typography variant="h6" sx={{ fontWeight: 500, fontSize: 16 }}>
             Étapes de production
           </Typography>
         </Stack>
-        <div>
-          <p>
-            Étapes de production / Sucy - Légumerie -{" "}
-            {dayjs.utc().format("DD/MM/YYYY")}
-          </p>
-        </div>
+        <Box>
+          <Typography sx={{ fontSize: 16, color: "rgba(255, 255, 255, 0.9)" }}>
+            / Sucy - Légumerie - {dayjs.utc().format("DD/MM/YYYY")}
+          </Typography>
+        </Box>
       </Stack>
-    </div>
+    </Paper>
   );
 };
 
