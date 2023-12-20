@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 
 const PSEHeader = () => {
   return (
-    <Paper className="stretchSelf" sx={{ px: 2, py: 1.2, bgcolor: "#000" }}>
+    <Paper className="stretchSelf" sx={{ px: 2, py: 2, bgcolor: "#000" }}>
       {/* <Box className="stretchSelf" sx={{ borderBottom: '1px solid #000'}}> */}
       <Stack spacing={4} direction="row" alignItems="center">
         <div>
