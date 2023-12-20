@@ -1,11 +1,6 @@
 import React, { useRef } from "react";
 import { Formik, Form } from "formik";
-import {
-  Button,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, Stack, TextField, Typography } from "@mui/material";
 
 import { PSEToDoneSchema } from "../utils/validations/productionStepExecutionSchema";
 
@@ -30,7 +25,7 @@ const PSEToDoneDialogForm = () => {
 
   return (
     <Stack className="flexColumn stretchSelf flex1" spacing={2}>
-      <div className="flexRow spaceBetween stretchSelf">
+      {/* <div className="flexRow spaceBetween stretchSelf">
         <Typography>Mik.</Typography>
         <Stack direction="row" spacing={2}>
           <Button onClick={handleCancel}>Annuler</Button>
@@ -38,17 +33,14 @@ const PSEToDoneDialogForm = () => {
             Enregister
           </Button>
         </Stack>
-      </div>
+      </div> */}
       <Formik
         onSubmit={handleSubmit}
         innerRef={formikRef}
         validationSchema={PSEToDoneSchema}
       >
         {({ values }) => {
-          return (
-            <Form className="flexColumn stretchSelf flex1">
-            </Form>
-          );
+          return <Form className="flexColumn stretchSelf flex1"></Form>;
         }}
       </Formik>
     </Stack>
