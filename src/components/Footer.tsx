@@ -1,4 +1,4 @@
-import { Link, Stack, Typography } from "@mui/material";
+import { Box, Link, Stack, Typography } from "@mui/material";
 import { Theme } from "@emotion/react";
 
 const links = [
@@ -7,7 +7,7 @@ const links = [
     url: "https://github.com/tiavina-mika"
   },
   {
-    label: "LInkedIn",
+    label: "LinkedIn",
     url: "https://www.linkedin.com/in/tiavina-michael-ralainirina/"
   },
   {
@@ -19,13 +19,13 @@ const links = [
 const sx = {
   footer: (theme: Theme) => ({
     borderTop: "1px solid " + theme.palette.grey[300],
-    padding: `12px`
+    paddingTop: 1.3
   })
 };
 
 const Footer = () => {
   return (
-    <div className="flexRow spaceBetween stretchSelf" sx={sx.footer}>
+    <Box className="flexRow spaceBetween stretchSelf" sx={sx.footer}>
       <Stack spacing={1} direction="row" flex={1}>
         {links.map((link, index) => (
           <Stack
@@ -50,7 +50,7 @@ const Footer = () => {
           <span>{new Date().getFullYear()}</span>
         </Typography>
       </div>
-    </div>
+    </Box>
   );
 };
 
