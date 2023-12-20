@@ -10,6 +10,7 @@ import {
 } from "./types/productionStepExecution";
 import PSEHeader from "./containers/PSEHeader";
 import PSEToDoneDialogForm from "./containers/PSEToDoneDialogForm";
+import Footer from "./components/Footer";
 
 // dummy data
 const data: IProductionStepExecution = {
@@ -42,39 +43,51 @@ const App = () => {
   const isTodo = productionStepExecution.status === "TODO";
 
   return (
-    <div className="flexColumn minHeight100">
-      {/* header */}
-      <PSEHeader />
+    <Box
+      className="flexColumn spaceBetween"
+      sx={{ minHeight: "calc(100vh - 18px)" }}
+    >
+      <div className="flexCenter stretchSelf">
+        {/* header */}
+        <PSEHeader />
 
-      {/* content */}
-      <Box sx={{ mt: 6 }} className="flexCenter stretchSelf">
-        <Button onClick={togglePSEModal} variant="contained" disabled={!isTodo}>
-          {isTodo ? "Terminer l'étape" : "Etape terminée"}
-        </Button>
-      </Box>
-
-      {/* result */}
-      {!isTodo && (
-        <Stack spacing={2} className="flexCenter stretchSelf" sx={{ mt: 2 }}>
-          <Typography>
-            Etape terminée à{" "}
-            <em>
-              {dayjs.utc(productionStepExecution.endTime).format("HH[h]mm:ss")}
-            </em>
-          </Typography>
-          <Button onClick={resetStep} variant="text">
-            Réinitialiser l'étape
+        {/* content */}
+        <Box sx={{ mt: 6 }} className="flexCenter stretchSelf">
+          <Button
+            onClick={togglePSEModal}
+            variant="contained"
+            disabled={!isTodo}
+          >
+            {isTodo ? "Terminer l'étape" : "Etape terminée"}
           </Button>
-        </Stack>
-      )}
+        </Box>
 
-      {/* form dialog */}
-      <PSEToDoneDialogForm
-        open={openPSEModal}
-        onClose={togglePSEModal}
-        onConfirm={handleConfirm}
-      />
-    </div>
+        {/* result */}
+        {!isTodo && (
+          <Stack spacing={2} className="flexCenter stretchSelf" sx={{ mt: 2 }}>
+            <Typography>
+              Etape terminée à{" "}
+              <em>
+                {dayjs
+                  .utc(productionStepExecution.endTime)
+                  .format("HH[h]mm:ss")}
+              </em>
+            </Typography>
+            <Button onClick={resetStep} variant="text">
+              Réinitialiser l'étape
+            </Button>
+          </Stack>
+        )}
+
+        {/* form dialog */}
+        <PSEToDoneDialogForm
+          open={openPSEModal}
+          onClose={togglePSEModal}
+          onConfirm={handleConfirm}
+        />
+      </div>
+      <Footer />
+    </Box>
   );
 };
 
