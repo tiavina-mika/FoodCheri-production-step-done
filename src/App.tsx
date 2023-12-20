@@ -1,6 +1,6 @@
 import { useState } from "react";
 import dayjs from "dayjs";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
 
@@ -37,6 +37,8 @@ const App = () => {
     console.log("values", newValues);
   };
 
+  const resetStep = () => setProductionStepExecution(data);
+
   const isTodo = productionStepExecution.status === "TODO";
 
   return (
@@ -51,15 +53,19 @@ const App = () => {
         </Button>
       </Box>
 
+      {/* result */}
       {!isTodo && (
-        <Box className="flexCenter stretchSelf" sx={{ mt: 2 }}>
+        <Stack spacing={2} className="flexCenter stretchSelf" sx={{ mt: 2 }}>
           <Typography>
             Etape terminée à{" "}
             <em>
               {dayjs.utc(productionStepExecution.endTime).format("HH[h]mm:ss")}
             </em>
           </Typography>
-        </Box>
+          <Button onClick={resetStep} variant="text">
+            Réinitialiser l'étape
+          </Button>
+        </Stack>
       )}
 
       {/* form dialog */}
