@@ -6,32 +6,34 @@ dayjs.extend(utc);
 
 import {
   IPSEFormValues,
-  IPSEToDoneValues
+  IProductionStepExecution
 } from "./types/productionStepExecution";
 import PSEHeader from "./containers/PSEHeader";
 import PSEToDoneDialogForm from "./containers/PSEToDoneDialogForm";
 
-const data = {
+// dummy data
+const data: IProductionStepExecution = {
   name: "Emincer le poirreaux",
   status: "TODO"
 };
+
 const App = () => {
   const [openPSEModal, setOpenPSEModal] = useState<boolean>(false);
-  const [
-    productionStepExecution,
-    setProductionStepExecution
-  ] = useState<IPSEToDoneValues | null>(null);
+  const [productionStepExecution, setProductionStepExecution] = useState<
+    IProductionStepExecution
+  >(data);
 
   const togglePSEModal = () => setOpenPSEModal(!openPSEModal);
 
   const handleConfirm = (values: IPSEFormValues) => {
     const newValues = {
+      ...productionStepExecution,
       ...values,
       endTime: dayjs.utc().valueOf(),
       status: "DONE"
     };
 
-    setFormValues(newValues);
+    setProductionStepExecution(newValues as IProductionStepExecution);
     console.log("values", newValues);
   };
 
