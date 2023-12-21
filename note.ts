@@ -26,6 +26,8 @@ note.ts
 
 note.ts
 
+note.ts
+
 onote.ts
 
 note.ts
