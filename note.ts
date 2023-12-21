@@ -50,6 +50,8 @@ note.ts
 
 note.ts
 
+note.ts
+
 tnote.ts
 
 note.ts
